@@ -5,9 +5,9 @@ if (Get-Process -Name "FiveM" -ErrorAction SilentlyContinue) {
     
 } else {
     # Spécifiez le chemin du dossier du cache de FiveM
-    $logs = "C:\Users\ethan\AppData\Local\FiveM\FiveM.app\logs"
-    $crashes = "C:\Users\ethan\AppData\Local\FiveM\FiveM.app\crashes"
-    $data = "C:\Users\ethan\AppData\Local\FiveM\FiveM.app\data"
+    $logs = $env:LOCALAPPDATA + "\FiveM\FiveM.app\logs"
+    $crashes = $env:LOCALAPPDATA + "FiveM\FiveM.app\crashes"
+    $data = $env:LOCALAPPDATA + "\FiveM\FiveM.app\data"
 
     # Logs
     if (Test-Path $logs -PathType Container) {
@@ -29,7 +29,6 @@ if (Get-Process -Name "FiveM" -ErrorAction SilentlyContinue) {
     #delete all the folders in the data folder except 'game-storage'
     $folders = Get-ChildItem -Path $data -Directory
     foreach ($folder in $folders) {
-        Write-Host $folder.Name
         if ($folder.Name -ne "game-storage") {
             Remove-Item -Path $folder.FullName -Recurse -Force
         }
