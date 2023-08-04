@@ -34,4 +34,6 @@ if (Get-Process -Name "FiveM" -ErrorAction SilentlyContinue) {
         }
     }
     Write-Host "Le dossier des données de FiveM a été nettoyé."
+
+    Read-Host -Prompt "Appuyez sur Entrée pour quitter."
 }
